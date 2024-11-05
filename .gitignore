@@ -45,3 +45,6 @@ build/
 # Datasource local storage ignored files
 /python-scripts/dataSources/
 /python-scripts/dataSources.local.xml
+
+#qualsiasi output in JSON
+*.json
