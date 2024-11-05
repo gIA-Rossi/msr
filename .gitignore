@@ -51,3 +51,6 @@ build/
 
 #non tracciare le risorse/appunti .txt
 progetto.txt
+
+#non tracciare la repo da analizzare
+/python-scripts/resources/godot/
