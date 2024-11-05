@@ -48,3 +48,6 @@ build/
 
 #qualsiasi output in JSON
 *.json
+
+#non tracciare le risorse/appunti .txt
+progetto.txt
