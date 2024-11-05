@@ -4,9 +4,15 @@ from collections import defaultdict
 from git import Repo
 import re
 import json
+import os
+
+# Percorso assoluto alla cartella `resources`
+base_dir = os.path.dirname(os.path.abspath(__file__))
+percorso_file_db = os.path.join(base_dir, "..", "resources", "issues.db")
+percorso_file_repo = os.path.join(base_dir, "..", "resources", "godot")
 
 # connetto al db
-conn = sqlite3.connect('./resources/issues.db')
+conn = sqlite3.connect(percorso_file_db)
 c = conn.cursor()
 
 query = """
@@ -17,7 +23,7 @@ WHERE id = ?
 
 
 # Path alla repository locale
-repo_path = "./resources/godot"
+repo_path = percorso_file_repo
 repo = Repo(repo_path)
 
 commits_list = []
@@ -134,7 +140,7 @@ def apply_filter_to_commits(commits_list):
 def start_analyze():
 
     if not repo.bare:
-        # filtro
+
         for commit in repo.iter_commits():
             syn_sem_criteria_calc(commit)
 
@@ -185,7 +191,7 @@ def get_the_10(list_of_bugged_file):
 
     return filtered_files[:10]
 
-
+"""
 if __name__ == '__main__':
 
     #commit = get_one_fix_bug_commit()
@@ -194,11 +200,6 @@ if __name__ == '__main__':
 
     #for row in res:
     #    print(row[1].lower())
-
-    # TO-DO:
-    # verifico se funziona
-    # filtro la lista dei commit tenendo quelli che soddisfano la formula
-    # analizzo i commit per scoprire i 10 file più buggati
 
     # Carica il file JSON
 
@@ -215,6 +216,32 @@ if __name__ == '__main__':
     # with open('top_10_bugged_file.json', 'w') as file:
       #  json.dump(list, file, indent=4)
 
+    with open('top_10_bugged_file.json', 'r') as file:
+        top_10 = json.load(file)
+
+    # salvo i primi 10
+    list_to_be_saved = get_the_10(top_10)
+
+    with open('the_10.json', 'w') as file:
+        json.dump(list_to_be_saved, file, indent=4)
+"""
+
+if __name__ == '__main__':
+    start_analyze()
+
+    with open('ordered_filtered_commits_list.json', 'r') as file:
+        filtered_commits_list = json.load(file)
+
+    """
+    Sconsiglio di eseguire queste istruzioni, poichè ci mettono molto tempo per essere eseguite.
+    Si consiglia solament di caricare il file già ottenuto
+    
+    list = find_top_10_bugged_file(filtered_commits_list)
+
+    # salvo localmente i commit per evitare l'esecuzione di nuovo
+    with open('top_10_bugged_file.json', 'w') as file:
+        json.dump(list, file, indent=4)
+    """
     with open('top_10_bugged_file.json', 'r') as file:
         top_10 = json.load(file)
 

@@ -46,8 +46,11 @@ build/
 /python-scripts/dataSources/
 /python-scripts/dataSources.local.xml
 
-#qualsiasi output in JSON
-*.json
+# JSON inutili
+/python-scripts/src/filtered_commits_list.json
+/python-scripts/src/ordered_filtered_commits_list.json
+/python-scripts/src/the_10.json
+
 
 #non tracciare le risorse/appunti .txt
 progetto.txt
