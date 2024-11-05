@@ -59,7 +59,7 @@ if __name__ == "__main__":
     conn = create_database(db_name)
     c = conn.cursor()
 
-    issues = load_issues('C:/Users/claud/OneDrive/Desktop/script msr/python-scripts/resources/issues_data.json')
+    issues = load_issues('./resources/issues_data.json')
 
     # Se il JSON è una lista, iteriamo su ciascuna issue
     for issue in issues:
