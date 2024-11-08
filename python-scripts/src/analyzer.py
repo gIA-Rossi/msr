@@ -181,7 +181,7 @@ def get_the_10(list_of_bugged_file):
 
     # dovrei escludere i file inutili che sono presenti in github
     exlcuded_files = ["LICENSE"]
-    excluded_extension = [".md", ".txt", ".yml", ".yaml"]
+    excluded_extension = [".md", ".txt"]
 
     # uso una list comprehension per fare prima
     filtered_files = [
