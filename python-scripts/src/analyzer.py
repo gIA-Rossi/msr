@@ -152,7 +152,7 @@ def start_analyze():
     else:
         print("La directory specificata non contiene una repository Git valida.")
 
-    return commits_list
+    return filtered_commits_list
 
 
 def find_top_10_bugged_file(list_of_commits):
