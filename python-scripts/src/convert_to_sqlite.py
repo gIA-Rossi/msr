@@ -1,5 +1,9 @@
 import json
 import sqlite3
+import os
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+percorso_file_issue = os.path.join(base_dir, "..", "resources", "issues_data.json")
 
 
 def create_database(db_name):
@@ -59,7 +63,10 @@ if __name__ == "__main__":
     conn = create_database(db_name)
     c = conn.cursor()
 
-    issues = load_issues('./resources/issues_data.json')
+    try:
+        issues = load_issues(percorso_file_issue)
+    except FileNotFoundError:
+        print("file non trovato")
 
     # Se il JSON è una lista, iteriamo su ciascuna issue
     for issue in issues:
